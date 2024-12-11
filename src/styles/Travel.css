@@ -1,0 +1,150 @@
+
+.travel-info{
+    margin-left: 8%;
+    background-color: #ffffff;
+    margin-top: 30px;
+}
+
+.travel-info h3{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.view-all-btn{
+    background: none;
+    display: flex;
+    gap: 18px;
+    vertical-align: top;
+    padding: 8px 15px 5px 15px ;
+    width: auto;
+    margin: 15px 0 15px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.view-all-btn:hover, .view-all-btn span:hover{
+    color: white;
+    background-color: rgb(30, 75, 207);
+    transition: 0.5s;
+    border: none;
+}
+
+.location {
+    background-image: url("https://i.ibb.co/CKw1VNX/travel.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100vw; /* Full viewport width */
+    height: 100%; /* Full height */
+    margin-top: 25px;
+    margin-left: calc(-50vw + 50%); /* Centers full-width background */
+    padding: 20px;
+}
+
+.discover{
+    margin-left: 8%;
+    margin-bottom: 15px;
+}
+
+.discover h3{
+    font-size: medium;
+    color: #ffffff;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.discover p{
+    font-size: large;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.discover span{
+    font-size: 13px;
+    font-style: italic;
+}
+
+hr{
+    width: 80%;
+}
+
+.recommendation{
+    margin-left: 7%;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.recommendation button{
+    display: flex;
+    background: none;
+    border: none;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.recommendation span{
+    margin-left: 10px;
+    font-size: medium;
+}
+
+.recommendation button:hover{
+    background: #ffffff;
+    width: 80%;
+    text-align: left;
+    color: #000000;
+    padding: 5px;
+    
+}
+
+/* Locationn Section */
+
+.location .property-image{
+    width: 100%;
+}
+
+.properties {
+  margin-left: 8%;
+  margin-right: 8%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
+  gap: 20px; 
+}
+
+.properties-info{
+    background-color: #ffffff;
+    padding: 15px;
+}
+
+/* Media Query for location section */
+
+@media (max-width: 767px){
+
+    .travel-section{
+        overflow-x: hidden;
+    }
+
+    .properties {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin-left: 5%;
+    }
+
+    .properties-info {
+        background-color: #ffffff;
+        padding: 25px;
+    }
+
+    .location .property-image{
+        height: 200px;
+    }
+
+    
+}
+
+
+
+
+
+
