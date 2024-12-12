@@ -26,6 +26,13 @@ const Header = () => {
 
       <div className="nav">
         <img src="https://i.ibb.co/5Y1bFZJ/Nav-bar.png" alt="Nav-bar" />
+
+        <div className="nav-items">
+          <a href="/Sales">Sales</a>
+          <a href="/Travels">Travels</a>
+          <a href="/Booking">Booking</a>
+        </div>
+
       </div>
     </header>
   );
