@@ -1,8 +1,5 @@
 import "../styles/Header.css";
-
-// need to make the sign-up button navigate to the sign up section
-
-// create an export sign-up button to make it easy  to reuse the button. Done
+import { useState } from "react";
 
 export const SignUpButton = () => {
   return (
@@ -13,6 +10,12 @@ export const SignUpButton = () => {
 };
 
 const Header = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleNavBar = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
     <header className="header">
       <p className="logo">
@@ -24,16 +27,29 @@ const Header = () => {
 
       <SignUpButton />
 
-      <div className="nav">
-        <img src="https://i.ibb.co/5Y1bFZJ/Nav-bar.png" alt="Nav-bar" />
-
-        <div className="nav-items">
-          <a href="/Sales">Sales</a>
-          <a href="/Travels">Travels</a>
-          <a href="/Booking">Booking</a>
+      <nav>
+        <div className="nav text-xl align-center">
+          <img
+            src="https://i.ibb.co/5Y1bFZJ/Nav-bar.png"
+            alt="Nav-bar"
+            onClick={toggleNavBar}
+          />
         </div>
 
-      </div>
+        <div className={`navbar-items ${isVisible ? "show" : "hide"}`}>
+          <ul>
+            <li>
+              <a href="/Sales-section">Sales</a>
+            </li>
+            <li>
+              <a href="/Travels">Travels</a>
+            </li>
+            <li>
+              <a href="/Booking">Booking</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
   );
 };

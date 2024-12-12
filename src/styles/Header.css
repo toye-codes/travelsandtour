@@ -29,12 +29,14 @@
 }
 
 .sign-up{
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px 30px 10px 30px;
     background-color: #154882;
     height: fit-content;
     border: none;
     border-radius: 2px;
+    position: absolute;
+    right: 0;
 }
 
 .sign-up a{
@@ -51,7 +53,20 @@
     display: none;
 }
 
+.navbar-items{
+  display: none;
+}
+
+
+
 @media (max-width: 767px) {
+
+  .header{
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
 
   .sign-up{
     display: none;
@@ -69,4 +84,34 @@
     saturate(5289%) hue-rotate(229deg) brightness(87%) contrast(116%);
   }
 
-}
+    .navbar-items.show {
+    display: block;  
+    opacity: 1;
+    background-color: transparent;
+    position: absolute;
+    background-color: #ffffff;
+    text-align: left;
+    color: #154882;
+    font: bolder;
+    font-size: larger;
+  }
+
+  .navbar-items.show li{
+    padding: 10px 5px 15px 10px;
+  }
+
+  .navbar-items.show li:hover{
+    background-color: #154882;
+    color: #ffffff;
+  }
+
+    .navbar-items.hide {
+    display: none;  
+    opacity: 0;     
+  }
+
+  nav{
+    margin-right: 20px;
+  }
+
+}  

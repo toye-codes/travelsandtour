@@ -84,7 +84,7 @@ const Hero = () => {
         <img src="https://i.ibb.co/zbGjzfC/Star.png" alt="Star" />
         <h2 className="greetings">Welcome To Travels and Tours</h2>
         <p>Plan amazing trips from the comfort of your home</p>
-        <SignUpButton />
+        {/* <SignUpButton /> */}
       </div>
 
       <div className="hero-icons">{heroIcons}</div>
