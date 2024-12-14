@@ -4,7 +4,7 @@ import React from 'react'
 
 const Magazine = () => {
   return (
-    <section className="Magazine-section pl-10 pr-10 bg-slate-200 font-poppins">
+    <section className="Magazine-section pl-10 pr-10 bg-slate-200 font-poppins pb-16">
       <div className="magazine-header">
         <h3 className="text-2xl font-bold pt-5 pb-3">Travel Magazine</h3>
         <button className="flex align-top gap-2 p-1.5 border-2 border-black  text-sm hover:bg-blue-500 hover:text-white hover:border-none hover:p-2 transition duration-500">
@@ -98,7 +98,7 @@ const Magazine = () => {
   );
 }
 
-const Article = ({ id, name, image, date }) => {
+const Article = ({ name, image, date }) => {
     return (
       <div className="blog-articles">
         <img src={image} alt={name} className="w-full" />

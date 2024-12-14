@@ -5,7 +5,8 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import Sales from './components/Sales'
 import Travel from "./components/Travel"
-import  Magazine from "./components/Magazine";
+import Magazine from "./components/Magazine";
+import Booking from "./components/Booking"
 
 
 createRoot(document.getElementById("root")).render(
@@ -15,5 +16,6 @@ createRoot(document.getElementById("root")).render(
     <Sales />
     <Travel />
     <Magazine />
+    <Booking />
   </StrictMode>
 );
