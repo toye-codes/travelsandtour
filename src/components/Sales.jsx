@@ -1,5 +1,5 @@
-// Import the stylesheet for component-specific styles
 import "../styles/Sales.css";
+import {ArrowRight} from "lucide-react"
 
 // HotelCard Component: Responsible for rendering individual hotel information
 const HotelCard = (props) => {
@@ -61,7 +61,7 @@ const Sales = () => {
       {/* Header section for sales */}
       <div className="sales-info">
         <h3>Hot Sales Today</h3>
-        <button>All sales</button>
+        <button >All sales <span> <ArrowRight className="arrow-right" size={35} /> </span></button>
       </div>
 
       {/* Grid section for first two hotels */}
