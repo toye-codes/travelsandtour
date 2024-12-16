@@ -1,4 +1,3 @@
-import { SectionIcon } from "lucide-react"
 import "../index.css"
 
 
