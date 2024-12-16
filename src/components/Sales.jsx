@@ -1,19 +1,16 @@
 import "../styles/Sales.css";
 import {ArrowRight} from "lucide-react"
 
-// HotelCard Component: Responsible for rendering individual hotel information
+
 const HotelCard = (props) => {
   return (
     <div className="hotelcard">
-      {/* Hotel image with alt text for accessibility */}
+   
       <img src={props.image} alt={props.name} className="image" />
-
-      {/* Hotel name and address */}
       <h3 className="card-name">{props.name}</h3>
       <p className="card-address">{props.address}</p>
       <hr className="hotel-line"/>
 
-      {/* Pricing section with original and discounted prices */}
       <div className="pricing">
         <p className="old-price">
           from <span>$600</span>
