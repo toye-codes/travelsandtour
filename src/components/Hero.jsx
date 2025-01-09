@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import "../styles/Hero.css";
 import "../index.css";
 
@@ -22,7 +21,6 @@ const heroIcons = heroIconsList.map((icons) => (
 ));
 
 export const HeroForm = () => {
-  // Step 1: Group related states into a single object for clarity
   const [formData, setFormData] = useState({
     destination: "",
     checkin: "",
@@ -40,22 +38,17 @@ export const HeroForm = () => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState(null);
 
-  // Step 2: Handle input changes dynamically
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Step 3: Unified validation function
   const validateForm = () => {
     const newErrors = {};
-
-    // Validate destination
     if (!formData.destination.trim()) {
       newErrors.destination = "Please input destination";
     }
 
-    // Validate dates
     const newCheckin = new Date(formData.checkin);
     const newCheckout = new Date(formData.checkout);
 
@@ -68,7 +61,6 @@ export const HeroForm = () => {
       newErrors.checkout = "Check-out date cannot be before check-in date.";
     }
 
-    // Validate guests
     if (!formData.guestNumber) {
       newErrors.guestNumber = "Please select the number of guests!";
     }
@@ -77,33 +69,42 @@ export const HeroForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Step 4: Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
       setLoading(true);
       setResults(null);
-      try {
-        const response = await axios.get(
-          "https://wft-geo-db.p.rapidapi.com/v1/geo/cities",
-          {
-            params: { namePrefix: formData.destination },
-            headers: {
-              "X-RapidAPI-Key": "YOUR_RAPIDAPI_KEY",
-              "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
-            },
-          }
-        );
 
-        setResults(response.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        alert("Failed to fetch data. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
+      const getHotels = async () => {
+        const url =
+          "https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=2025-05-26&locale=es_AR&adults_number=1&sort_order=REVIEW&page_number=1&domain=AR&price_max=500&region_id=2872&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=2025-05-27";
+        const option = {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "9870786ffemshe48412e97ed53a3p1aabb5jsn92f8d087973a",
+            "x-rapidapi-host": "hotels-com-provider.p.rapidapi.com",
+          },
+        };
+
+        try {
+          const response = await fetch(url, option);
+          const hotelResults = await response.json();
+          setResults(hotelResults.properties);
+        } catch (error) {
+          console.error("Failed to fetch", error);
+        }
+      };
+
+      getHotels();
     }
+  };
+
+  const handleCancel = () => {
+    setResults(null);
+    setLoading(false);
+    
   };
 
   return (
@@ -183,15 +184,34 @@ export const HeroForm = () => {
       </form>
 
       {results && (
-        <div className="results">
-          <h3>Search Results:</h3>
-          <ul>
-            {results.map((city) => (
-              <li key={city.id}>
-                {city.name}, {city.country}
-              </li>
+        <div className="absolute top-full left-0 mt-4 w-full p-4 bg-white shadow-lg rounded-lg">
+          <button
+            className="text-red-500 font-bold mb-4"
+            onClick={handleCancel}>
+            Cancel
+          </button>
+          <h3 className="text-xl font-semibold mb-4">Search Results:</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {results.slice(0, 10).map((hotel) => (
+              <div
+                key={hotel.id}
+                className="bg-gray-100 p-2 rounded-lg shadow-md hover:bg-gray-200">
+                <h4 className="font-semibold text-lg">{hotel.name}</h4>
+                <p className="text-gray-600">{hotel.location}</p>
+                <div className="flex items-center mt-2">
+                  <span className="text-sm text-green-500">
+                    Price: {hotel.price.formatted}
+                  </span>
+                  <span className="ml-2 text-sm text-yellow-500">
+                    {hotel.star} ⭐
+                  </span>
+                </div>
+                <p className="text-gray-500 mt-2">
+                  {hotel.availability.minRoomsLeft} rooms left
+                </p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>

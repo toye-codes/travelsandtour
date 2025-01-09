@@ -3,8 +3,6 @@ import { Mail, Twitter, Instagram, Linkedin, Facebook } from "lucide-react";
 import { useState } from "react";
 
 
-
-
 const benefitCard = [
   {
     id: "01",
@@ -75,7 +73,7 @@ const Booking = () => {
       return setEmailError("please input a valid Email")
     } else {
       e.preventDefault()
-      setUserMessage("We've sent you an confirmation email. Thank you for subscribing")
+      setUserMessage("We've sent you a confirmation email. Thank you for subscribing")
     }
 
   }
