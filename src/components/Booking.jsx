@@ -82,7 +82,7 @@ const Booking = () => {
   return (
     <section
       className="bg-[url('https://i.ibb.co/y63VLgm/booking.png')] 
-      // bg-no-repeat bg-cover font-poppins pl-10 pr-10 pb-10">
+      // bg-no-repeat bg-cover font-poppins pl-10 pr-10 pb-10" id="booking">
       <h3
         className="text-white text-2xl  font-extrabold h-12 
             pt-14 ">

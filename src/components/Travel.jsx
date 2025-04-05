@@ -3,7 +3,7 @@ import { ArrowRight, MapPin } from "lucide-react";
 
 const PropertiesCard = ({ name, totalNum, image }) => {
   return (
-    <div className="properties-card">
+    <div className="properties-card rounded-lg">
       <div className="properties-info">
         <h3>{name}</h3>
         <p>Total Properties: {totalNum}</p>
@@ -58,7 +58,7 @@ const Properties = [
 
 const Travel = () => {
   return (
-    <section className="travel-section">
+    <section className="travel-section" id="travel">
       <div className="travel-info">
         <h3>Top Travel Destinations</h3>
         <button className="view-all-btn">
@@ -70,6 +70,20 @@ const Travel = () => {
       </div>
 
       <section className="location">
+        <div className="properties ">
+          {Properties.map((property) => (
+            <PropertiesCard
+              key={property.id}
+              name={property.name}
+              totalNum={property.totalNum}
+              image={property.image}
+              className={`property ${property.id
+                .toLowerCase()
+                .replace(/\s+/g, "_")}`}
+            />
+          ))}
+        </div>
+
         <div className="discover">
           <div>
             <h3>Discover</h3>
@@ -102,20 +116,6 @@ const Travel = () => {
               </button>
               {index < 5 && <hr className="recommendation-line" />}
             </div>
-          ))}
-        </div>
-
-        <div className="properties">
-          {Properties.map((property) => (
-            <PropertiesCard
-              key={property.id}
-              name={property.name}
-              totalNum={property.totalNum}
-              image={property.image}
-              className={`property ${property.id
-                .toLowerCase()
-                .replace(/\s+/g, "_")}`}
-            />
           ))}
         </div>
       </section>

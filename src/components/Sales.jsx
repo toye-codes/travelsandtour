@@ -1,15 +1,13 @@
 import "../styles/Sales.css";
-import {ArrowRight} from "lucide-react"
-
+import { ArrowRight } from "lucide-react";
 
 const HotelCard = (props) => {
   return (
     <div className="hotelcard">
-   
       <img src={props.image} alt={props.name} className="image" />
       <h3 className="card-name">{props.name}</h3>
       <p className="card-address">{props.address}</p>
-      <hr className="hotel-line"/>
+      <hr className="hotel-line" />
 
       <div className="pricing">
         <p className="old-price">
@@ -54,16 +52,22 @@ const hotel = [
 // Sales Component: Main component for displaying hotel sales
 const Sales = () => {
   return (
-    <section className="sales-section">
+    <section className="sales-section" id="sales">
       {/* Header section for sales */}
       <div className="sales-info">
         <h3>Hot Sales Today</h3>
-        <button >All sales <span> <ArrowRight className="arrow-right" size={35} /> </span></button>
+        <button>
+          All sales{" "}
+          <span>
+            {" "}
+            <ArrowRight className="arrow-right" size={35} />{" "}
+          </span>
+        </button>
       </div>
 
       {/* Grid section for first two hotels */}
-      <div className="grid-section">
-        {hotel.slice(0, 2).map((hotelData) => (
+      <div className="block-section">
+        {hotel.map((hotelData) => (
           <HotelCard
             key={hotelData.id}
             name={hotelData.name}
@@ -75,10 +79,10 @@ const Sales = () => {
 
       {/* Block section for remaining hotels */}
       <div className="block-section">
-        {hotel.slice(2).map((hotelData) => (
+        {hotel.map((hotelData) => (
           <HotelCard
             key={hotelData.id}
-            name= {hotelData.name}
+            name={hotelData.name}
             address={hotelData.address}
             image={hotelData.image}
           />

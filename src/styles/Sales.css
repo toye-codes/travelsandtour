@@ -6,10 +6,10 @@
 }
 
 .sales-section{
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 40PX;
-    
+    padding-bottom: 40PX;
 }
 
 .sales-info{
@@ -44,14 +44,14 @@
 .grid-section{
     display: flex;
     justify-content: space-between;
-    gap: 15px;
+    gap: 10px;
     /* padding-bottom: 30px; */
     /* flex-wrap: wrap; */
 }
 
 
 @media (max-width: 767px){
-    .grid-section{
+    .block-section{
         display: flex;
         flex-direction: column;
     }
@@ -64,26 +64,18 @@
 
 .hotelcard{
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 8px 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    margin-left: 5px;
+    background-color: aliceblue;
+    border-radius: 10px;
+    width: auto;
 }
 
-.grid-section .image{
+/* .grid-section .image{
     width: 100%;
     margin-bottom: 10px;
     height: 350px;
-}
-
-@media (max-width: 767px){
-    .grid-section .image{
-        width: 100%;
-        height: 200px;
-    }
-}
-
-.block-section .image{
-    width: 100%;
-    height: 332px;
-}
+} */
 
 @media (max-width: 767px){
     .block-section .image{
@@ -92,9 +84,22 @@
     }
 }
 
+.block-section .image{ 
+    height: 300px;
+    width: auto;
+    border-radius: 10px;
+}
+
+/* @media (max-width: 767px){
+    .block-section .image{
+        width: 100%;
+        height: 200px;
+    }
+} */
+
 .block-section{
     display: flex;
-    flex-direction: column;
+    gap: 10px;
 }
 
 .card-name{

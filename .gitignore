@@ -26,6 +26,8 @@ dist-ssr
 # Dependencies
 node_modules/
 
+.env
+
 # Build output
 dist/
 ## Ignore Visual Studio temporary files, build results, and

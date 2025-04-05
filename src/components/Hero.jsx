@@ -108,7 +108,7 @@ export const HeroForm = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container" id="home">
       <p>Where would you like to go?</p>
 
       <form className="hero-form" onSubmit={handleSubmit}>
@@ -221,13 +221,13 @@ export const HeroForm = () => {
 const Hero = () => {
   return (
     <section className="hero-section">
-      <div className="hero-info">
+      <div className="hero-info w-full">
         <img src="https://i.ibb.co/zbGjzfC/Star.png" alt="Star" />
         <h2 className="greetings">Welcome To Travels and Tours</h2>
         <p>Plan amazing trips from the comfort of your home</p>
       </div>
 
-      <div className="hero-icons">{heroIcons}</div>
+      <div className="hero-icons gap-5 md:gap-[50px] ">{heroIcons}</div>
 
       <div className="form">
         <HeroForm />

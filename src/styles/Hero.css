@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
 }
 
 .hero-section{
@@ -9,7 +10,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    padding: 30px;
+    /* padding: 30px; */
 }
 
 .hero-info{
@@ -17,12 +18,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    /* padding: 10px;
     border: 1px solid #ffffff;
-    width: fit-content;
     max-width: 100%;
-    margin: auto;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 8px 10px rgba(0, 0, 0, 0.3);
+    margin: auto; */
 }
 
 .greetings{
@@ -54,7 +53,7 @@
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
-    gap: 50px;
+    /* gap: 50px; */
     align-items: center;
     height: 102px;
     cursor: pointer;
@@ -76,7 +75,7 @@
 
 @media (max-width: 767px) {
    .hero-icons{
-    gap: 15px;
+    /* gap: 15px; */
    }
     
     .hero-icons.flight, .hero-icons.hotels, .hero-icons.cars, .hero-icons.package-deals,
