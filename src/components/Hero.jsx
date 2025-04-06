@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/Hero.css";
 import "../index.css";
+import {useFinder} from "../context/useFinder"
 
 const heroIconsList = [
   { id: "flight", image: "https://i.ibb.co/7r3vfhm/flight.png" },
@@ -21,91 +22,22 @@ const heroIcons = heroIconsList.map((icons) => (
 ));
 
 export const HeroForm = () => {
-  const [formData, setFormData] = useState({
-    destination: "",
-    checkin: "",
-    checkout: "",
-    guestNumber: "",
-  });
+    const {
+    formData,
+    errors,
+    loading,
+    results,
+    handleInputChange,
+    searchHotels,
+    handleCancel
+  } = useFinder();
 
-  const [errors, setErrors] = useState({
-    destination: "",
-    checkin: "",
-    checkout: "",
-    guestNumber: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState(null);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.destination.trim()) {
-      newErrors.destination = "Please input destination";
-    }
-
-    const newCheckin = new Date(formData.checkin);
-    const newCheckout = new Date(formData.checkout);
-
-    if (isNaN(newCheckin)) {
-      newErrors.checkin = "Please input a valid check-in date";
-    }
-    if (isNaN(newCheckout)) {
-      newErrors.checkout = "Please input a valid check-out date";
-    } else if (newCheckout <= newCheckin) {
-      newErrors.checkout = "Check-out date cannot be before check-in date.";
-    }
-
-    if (!formData.guestNumber) {
-      newErrors.guestNumber = "Please select the number of guests!";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (validateForm()) {
-      setLoading(true);
-      setResults(null);
-
-      const getHotels = async () => {
-        const url =
-          "https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=2025-05-26&locale=es_AR&adults_number=1&sort_order=REVIEW&page_number=1&domain=AR&price_max=500&region_id=2872&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=2025-05-27";
-        const option = {
-          method: "GET",
-          headers: {
-            "x-rapidapi-key":
-              "9870786ffemshe48412e97ed53a3p1aabb5jsn92f8d087973a",
-            "x-rapidapi-host": "hotels-com-provider.p.rapidapi.com",
-          },
-        };
-
-        try {
-          const response = await fetch(url, option);
-          const hotelResults = await response.json();
-          setResults(hotelResults.properties);
-        } catch (error) {
-          console.error("Failed to fetch", error);
-        }
-      };
-
-      getHotels();
-    }
+    searchHotels();
   };
 
-  const handleCancel = () => {
-    setResults(null);
-    setLoading(false);
-    
-  };
+
 
   return (
     <div className="form-container" id="home">
@@ -184,31 +116,48 @@ export const HeroForm = () => {
       </form>
 
       {results && (
-        <div className="absolute top-full left-0 mt-4 w-full p-4 bg-white shadow-lg rounded-lg">
+        <div className="absolute top-full bg-white left-0 mt-4 w-full p-4 shadow-lg rounded-lg">
           <button
             className="text-red-500 font-bold mb-4"
-            onClick={handleCancel}>
-            Cancel
+            onClick={handleCancel}
+          >
+            Back
           </button>
           <h3 className="text-xl font-semibold mb-4">Search Results:</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-white gap-4">
             {results.slice(0, 10).map((hotel) => (
               <div
                 key={hotel.id}
-                className="bg-gray-100 p-2 rounded-lg shadow-md hover:bg-gray-200">
-                <h4 className="font-semibold text-lg">{hotel.name}</h4>
-                <p className="text-gray-600">{hotel.location}</p>
+                className=" p-2 rounded-lg hover:p-3">
+                <div>
+                  <img
+                    src={hotel.photoMainUrl}
+                    alt={hotel.name}
+                    className="w-24 h-16 md:w-full md:h-64 object-cover rounded-lg shadow-lg"
+                  />
+                </div>
+
+               <div className="bg-white p-4 rounded-lg shadow-md w-auto">
+                 <h4 className="font-semibold text-lg mt-2">{hotel.name}</h4>
+                {/* <p className="text-gray-600 mt-1">
+                  {hotel.location || "Location not available"}
+                </p> */}
                 <div className="flex items-center mt-2">
                   <span className="text-sm text-green-500">
-                    Price: {hotel.price.formatted}
+                    Price: ₦
+                    {hotel.priceBreakdown?.grossPrice?.value.toLocaleString()}
                   </span>
                   <span className="ml-2 text-sm text-yellow-500">
                     {hotel.star} ⭐
                   </span>
                 </div>
-                <p className="text-gray-500 mt-2">
-                  {hotel.availability.minRoomsLeft} rooms left
+                {/* <p className="text-gray-500 mt-2">
+                  {hotel.availability?.minRoomsLeft}
+                </p> */}
+                <p className="text-gray-600 mt-1">
+                  {hotel.reviewScoreWord} ({hotel.reviewCount} reviews)
                 </p>
+               </div>
               </div>
             ))}
           </div>
