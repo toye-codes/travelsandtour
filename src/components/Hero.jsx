@@ -4,10 +4,8 @@ import "../index.css";
 import {useFinder} from "../context/useFinder"
 
 const heroIconsList = [
-  { id: "flight", image: "https://i.ibb.co/7r3vfhm/flight.png" },
   { id: "Hotels", image: "https://i.ibb.co/XXkfmNv/Hotels.png" },
   { id: "Cars", image: "https://i.ibb.co/g7RQ27Q/Cars.png" },
-  { id: "package Deals", image: "https://i.ibb.co/NWJwK4P/Package-deals.png" },
   { id: "Cruise", image: "https://i.ibb.co/2Ztx9GW/Cruise.png" },
   { id: "Tours", image: "https://i.ibb.co/GJvzzF3/Tours.png" },
 ];
